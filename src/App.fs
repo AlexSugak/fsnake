@@ -12,9 +12,8 @@ open Fable
 importAll "../sass/main.sass"
 
 // MODEL
-
 let WorldSize = 20 // number of cells per x and y axis
-let Scale = 15 // number of px per cell
+let Scale = 20 // number of px per cell
 let RefreshRate = 200 // ms to tick the world state
 
 type Position = {
@@ -48,7 +47,6 @@ type Game =
 let init _ = NotStarted, []
 
 // UPDATE
-
 let newSnake = [{x=2; y=0}; {x=1; y=0}; {x=0; y=0}]
 let newField snake = Array.ofSeq (seq {for i = 0 to WorldSize - 1 do
                                         for j = 0 to WorldSize - 1 do
@@ -116,7 +114,6 @@ let update msg model =
                 | _ -> model, []
 
 // VIEW
-
 let [<Literal>] LEFT_KEY = 37.
 let [<Literal>] UP_KEY = 38.
 let [<Literal>] RIGHT_KEY = 39.
