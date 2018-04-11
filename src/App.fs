@@ -177,7 +177,7 @@ let root model dispatch =
                     (match model with
                         | InProgress s
                         | Over s
-                        | Win s -> [point "red" s.Food]
+                        | Win s -> [point "green" s.Food]
                         | _ -> [])
                     @
                     // snake
@@ -194,7 +194,7 @@ let root model dispatch =
                 | NotStarted -> [button
                                     [OnClick (fun _ -> StartGame |> dispatch)]
                                     [str "Start Game"]]
-                | Over _ -> [label [] [str "Game Over !!!"
+                | Over _ -> [label [] [str "Game Over !"
                                        div
                                         []
                                         [button
@@ -209,7 +209,9 @@ open Elmish.HMR
 // App
 Program.mkProgram init update root
 |> Program.withSubscription onGameKeyDown
+#if DEBUG
 |> Program.withDebugger
 |> Program.withHMR
+#endif
 |> Program.withReact "elmish-app"
 |> Program.run
